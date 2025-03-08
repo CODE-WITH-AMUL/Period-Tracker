@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="floating-bg"></div>
+    <div class="floating-bg" style="animation-delay: -5s"></div>
+    <form class="login-card register-card" method="POST">
+        {% csrf_token %}
+        <div class="login-header">
+            <h1 class="login-title">Register Page </h1>
+            <p style="color: rgba(255, 255, 255, 0.6)">Create your free account</p>
+        </div>
+        <div class="input-group">
+            <input type="email"  class="input-field" name="email" placeholder=""required>
+            <label class="floating-label">Email Address</label>
+        </div>
+
+        <div class="input-group">
+            <input type="text" class="input-field" name="username" placeholder=""required>
+            <label class="floating-label">Username</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" class="input-field" name="password" placeholder=" "requiredoninput="updateStrength(this.value)">
+            <label class="floating-label">Password</label>
+            <div class="password-strength">
+                <div class="strength-bar" id="strengthBar"></div>
+            </div>
+        </div>
+        <div class="input-group">
+            <input type="password" class="input-field" name="conform_password" placeholder=" "required>
+            <label class="floating-label">Confirm Password</label>
+        </div>
+
+        <button type="submit" class="login-btn" id="registerButton">Let's Go! 🚀</button>
+        <div class="terms"> By registering, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></div>
+
+        <p style="color: rgba(232, 222, 222, 0.6); margin-top: 20px; text-align: center; font-size: 0.9em">
+            Already have an account? <a href="{% url 'login' %}" style="color: var(--primary); text-decoration: underline;">Sign In</a>
+        </p>
+    </form>
+    
+</body>
+</html>

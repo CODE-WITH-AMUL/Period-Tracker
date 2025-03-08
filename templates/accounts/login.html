@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Login</title>
+    <link href="https://unpkg.com/css.gg@2.0.0/icons/css/instagram.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="floating-bg"></div>
+    <div class="floating-bg" style="animation-delay: -5s"></div>
+    <form class="login-card" method="POST">
+        {% csrf_token %}
+        <div class="login-header">
+            <h1 class="login-title">Welcome Back! 👋</h1>
+            <p style="color: rgba(255, 255, 255, 0.6)">Let's get you signed in</p>
+        </div>
+
+        <div class="input-group">
+            <input 
+                type="text" 
+                class="input-field" 
+                name="email"
+                placeholder=" "
+                required
+            >
+            <label class="floating-label">Email</label>
+        </div>
+
+        <div class="input-group">
+            <input 
+                type="password" 
+                class="input-field" 
+                name="password" 
+                placeholder=" "
+                required
+            >
+            <label class="floating-label">Password</label>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginButton">
+            Let's Go! 🚀
+        </button>
+
+        <div class="social-login">
+            <div class="social-icon">
+                <svg style="width:20px;fill:white" viewBox="0 0 24 24">
+                    <path d="M12 2.04c-5.5 0-10 4.49-10 10.02c0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"/>
+                </svg>
+            </div>
+            <div class="social-icon">
+                <svg style="width:20px;fill:white" viewBox="0 0 24 24">
+                    <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="#" style="color: rgba(255, 255, 255, 0.6); text-decoration: none; font-size: 0.9em">
+                Forgot Password?
+            </a>
+            <br>
+            <p style="color: rgba(255, 255, 255, 0.6); margin-top: 20px; font-size: 0.9em">
+                New here? <a href="{% url 'register' %}" style="color: var(--primary); text-decoration: underline;">Sign Up</a>
+            </p>
+        </div>
+    </form>
+
+    
+</body>
+</html>
