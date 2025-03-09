@@ -13,13 +13,6 @@ class Userprofile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} Profile"
+    
+
         
-class User(AbstractUser):
-    opt = models.CharField(max_length=6 , blank=True , null=True)
-    
-    
-    def generate_opt(self):
-        opt_code = str(random.randint(10000 , 999999))
-        self.opt = opt_code
-        self.save()
-        return opt_code

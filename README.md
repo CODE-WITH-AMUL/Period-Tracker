@@ -107,5 +107,4 @@ This project is built using:
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-For contributions, issues, or feature requests, feel free to open a pull request or contact amulshar80@gmail.com.
-dont amek any chneges to readme file just chnage the last one ut shwoig read sont chnage anythin 
+For contributions, issues, or feature requests, feel free to open a pull request or contact amulshar80@gmail.com. Please do not make any changes to the README file; just modify the last section where it shows 'Read'. Do not change anything else.
