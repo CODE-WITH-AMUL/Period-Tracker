@@ -86,7 +86,7 @@ This project is built using:
 
 ```json
 {
-    "version": 1,
+    "version": "1.0",
     "project": "Period Tracker",
     "project_url": "https://github.com/CODE-WITH-AMUL/Period-Tracker",
     "repo": "https://github.com/CODE-WITH-AMUL/Period-Tracker.git",
@@ -100,15 +100,12 @@ This project is built using:
         "djangorestframework": ">=3.14",
         "python-decouple": ">=3.6",
         "django-cors-headers": ">=4.2"
-    },
+    }
 }
-
----
-
-
-
+```
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-For contributions, issues, or feature requests, feel free to open a pull request or contact [your email].
+For contributions, issues, or feature requests, feel free to open a pull request or contact amulshar80@gmail.com.
+dont amek any chneges to readme file just chnage the last one ut shwoig read sont chnage anythin 
