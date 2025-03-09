@@ -2,13 +2,67 @@
 
 ## Overview
 The **Period Tracking System** is a Django-based application designed to help users track their menstrual cycles efficiently. It provides insights into cycle patterns, predicts upcoming periods, and offers lifestyle improvement suggestions.
+# 🌸 Period Tracking System  
 
-## Features
-- **Track Previous Records**: Stores and displays past menstrual cycle data.
-- **Cycle Analysis**: Shows gaps between cycles and visualizes patterns.
-- **Prediction System**: Estimates the next period cycle and end date.
-- **Health Insights**: Provides suggestions for lifestyle improvements.
-- **Modern UI**: Professional and visually appealing color scheme.
+[![Django](https://img.shields.io/badge/Framework-Django-blue.svg)](https://www.djangoproject.com/)  
+[![License](https://img.shields.io/github/license/yourusername/period-tracking-system)](LICENSE)  
+[![Version](https://img.shields.io/badge/Version-1.0-green.svg)](https://github.com/yourusername/period-tracking-system)  
+
+## 📖 Overview  
+The **Period Tracking System** is a Django-based application designed to help users track their menstrual cycles efficiently.  
+It provides insights into cycle patterns, predicts upcoming periods, and offers lifestyle improvement suggestions.  
+
+---
+
+## 🚀 Features  
+✅ **Track Previous Records** – Stores and displays past menstrual cycle data.  
+✅ **Cycle Analysis** – Shows gaps between cycles and visualizes patterns.  
+✅ **Prediction System** – Estimates the next period cycle and end date.  
+✅ **Health Insights** – Provides suggestions for lifestyle improvements.  
+✅ **Modern UI** – Professional and visually appealing color scheme.  
+✅ **Secure Authentication** – Login & register functionality.  
+✅ **Responsive Design** – Mobile-friendly interface.  
+✅ **Data Visualization** – Graphs for cycle tracking using Chart.js/D3.js.  
+
+## 📖 About  
+**Period Tracker** is a Django-based application designed to help users track their period cycles, predict the next cycle, and provide health insights.  
+
+---
+
+## 📦 Project Information  
+
+```json
+{
+    "version": 1,
+    "project": "Period Tracker",
+    "project_url": "https://github.com/CODE-WITH-AMUL/Period-Tracker",
+    "repo": "https://github.com/CODE-WITH-AMUL/Period-Tracker.git",
+    "branches": ["main"],
+    "environment_type": "virtualenv",
+    "show_commit_url": "https://github.com/CODE-WITH-AMUL/Period-Tracker/commit/",
+    "language": "Python",
+    "framework": "Django",
+    "dependencies": {
+        "Django": ">=4.0",
+        "djangorestframework": ">=3.14",
+        "python-decouple": ">=3.6",
+        "django-cors-headers": ">=4.2"
+    },
+    "database": {
+        "type": "PostgreSQL",
+        "host": "localhost",
+        "port": 5432,
+        "name": "period_tracker_db"
+    },
+    "features": [
+        "Track period cycle",
+        "Predict next cycle",
+        "Show health insights",
+        "User authentication",
+        "Personalized recommendations"
+    ]
+}
+
 
 ## Installation
 ### 1. Clone the Repository
