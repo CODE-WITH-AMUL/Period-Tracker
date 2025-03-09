@@ -27,44 +27,7 @@ It provides insights into cycle patterns, predicts upcoming periods, and offers 
 ## 📖 About  
 **Period Tracker** is a Django-based application designed to help users track their period cycles, predict the next cycle, and provide health insights.  
 
----
-
-## 📦 Project Information  
-
-```json
-{
-    "version": 1,
-    "project": "Period Tracker",
-    "project_url": "https://github.com/CODE-WITH-AMUL/Period-Tracker",
-    "repo": "https://github.com/CODE-WITH-AMUL/Period-Tracker.git",
-    "branches": ["main"],
-    "environment_type": "virtualenv",
-    "show_commit_url": "https://github.com/CODE-WITH-AMUL/Period-Tracker/commit/",
-    "language": "Python",
-    "framework": "Django",
-    "dependencies": {
-        "Django": ">=4.0",
-        "djangorestframework": ">=3.14",
-        "python-decouple": ">=3.6",
-        "django-cors-headers": ">=4.2"
-    },
-    "database": {
-        "type": "PostgreSQL",
-        "host": "localhost",
-        "port": 5432,
-        "name": "period_tracker_db"
-    },
-    "features": [
-        "Track period cycle",
-        "Predict next cycle",
-        "Show health insights",
-        "User authentication",
-        "Personalized recommendations"
-    ]
-}
-
-
-## Installation
+### Installation
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/yourusername/period-tracking-system.git
@@ -108,8 +71,7 @@ python manage.py runserver
 3. View cycle history and upcoming predictions.
 4. Access health insights and recommendations.
 
-## Documentation
-Detailed documentation is available at [Documentation Link].
+
 
 ## Credits
 This project is built using:
@@ -117,12 +79,33 @@ This project is built using:
 - **Bootstrap/Tailwind** - Frontend styling
 - **Chart.js/D3.js** - Data visualization
 
-## Screenshots
-### Dashboard View:
-_Image of the dashboard_
 
-### Cycle Analysis:
-_Image showing cycle tracking_
+---
+
+## 📦 Project Information  
+
+```json
+{
+    "version": 1,
+    "project": "Period Tracker",
+    "project_url": "https://github.com/CODE-WITH-AMUL/Period-Tracker",
+    "repo": "https://github.com/CODE-WITH-AMUL/Period-Tracker.git",
+    "branches": ["main"],
+    "environment_type": "virtualenv",
+    "show_commit_url": "https://github.com/CODE-WITH-AMUL/Period-Tracker/commit/",
+    "language": "Python",
+    "framework": "Django",
+    "dependencies": {
+        "Django": ">=4.0",
+        "djangorestframework": ">=3.14",
+        "python-decouple": ">=3.6",
+        "django-cors-headers": ">=4.2"
+    },
+}
+
+---
+
+
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
