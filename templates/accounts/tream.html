@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CycleCare - Terms & Privacy Policy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #FF6584;
+            --text-color: #2E2E2E;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+        }
+
+        ul {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .acceptance {
+            position: sticky;
+            bottom: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--primary-color);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-heartbeat"></i> CycleCare Policies</h1>
+            <p id="last-updated">Last Updated: </p>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-balance-scale"></i> Terms of Service</h2>
+            
+            <h3>1. Acceptance of Terms</h3>
+            <ul>
+                <li>Minimum age requirement: <strong>13 years</strong></li>
+                <li>Accurate health information provision</li>
+                <li>Personal, non-commercial use only</li>
+            </ul>
+
+            <h3>2. Our Services</h3>
+            <ul>
+                <li>Smart cycle predictions</li>
+                <li>Symptom tracking & analysis</li>
+                <li>Educational content library</li>
+                <li>Interactive health insights</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+            
+            <h3>1. Data Security</h3>
+            <ul>
+                <li>Military-grade encryption</li>
+                <li>Biometric access controls</li>
+                <li>Regular penetration testing</li>
+            </ul>
+
+            <h3>2. Data Usage</h3>
+            <ul>
+                <li>Personalized health insights</li>
+                <li>Service optimization</li>
+                <li>Anonymous research contributions</li>
+            </ul>
+        </div>
+
+        <div class="card contact-card">
+            <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-at"></i> Email: <a href="mailto:amulshar80@gmail.com">amulshar80@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Mail: amulshar80@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="acceptance">
+            <button onclick="acceptTerms()">
+                <i class="fas fa-check-circle"></i> Accept & Continue
+            </button>
+        </div>
+        <a href="{% url 'login' %}">Login Now</a>
+    </div>
+
+    <script>
+        let modifiedDate = new Date(document.lastModified);
+    let formattedDate = modifiedDate.toLocaleDateString(); // Formats date only
+
+    document.getElementById("last-updated").innerHTML += formattedDate;;
+        // Scroll progress indicator
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+        function acceptTerms() {
+            localStorage.setItem('termsAccepted', 'true');
+            showConfirmation();
+        }
+        function showConfirmation() {
+            const btn = document.querySelector('button');
+            btn.innerHTML = '<i class="fas fa-check"></i> Accepted!';
+            btn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+            btn.disabled = true;
+        }
+    
+    </script>
+</body>
+</html>
