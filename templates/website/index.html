@@ -3,275 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CycleCare - Period Tracker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>CycleSync - Period Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #9C27B0;
-            --secondary: #E91E63;
-            --accent: #FF4081;
-            --background: #F8F9FA;
-            --text: #2E2E2E;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #FF8E8E;
+            --accent: #FFD93D;
+            --background: #FFF5F5;
+            --text: #2E2E2E;
         }
 
         body {
-            background: var(--background);
+            background-color: var(--background);
             color: var(--text);
         }
 
         .navbar {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.5rem 5%;
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
         }
 
-        .brand {
-            font-size: 1.5rem;
-            font-weight: 600;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 2rem;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .dashboard {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
+        .nav-links {
+            display: flex;
             gap: 2rem;
         }
 
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.5rem;
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        .calendar-day {
-            padding: 1rem;
-            text-align: center;
-            border-radius: 10px;
-            background: #f5f5f5;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .calendar-day.active {
-            background: var(--accent);
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            transform: scale(1.05);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.3s;
         }
 
-        .stats {
-            display: grid;
-            gap: 1rem;
+        .cta-button:hover {
+            transform: translateY(-2px);
         }
 
-        .stat-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        /* Hero Section */
+        .hero {
+            padding: 8rem 5%;
+            text-align: center;
+            background: linear-gradient(45deg, #fff0f0, #ffffff);
         }
 
-        .stat-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             color: var(--primary);
         }
 
-        .progress-bar {
-            height: 8px;
-            background: #eee;
-            border-radius: 4px;
-            overflow: hidden;
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: var(--secondary);
-            width: 75%;
-            transition: width 0.5s;
-        }
-
-        .quick-actions {
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
-        .action-btn {
+        .feature-card {
             background: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 5%;
+            margin-top: 5rem;
         }
 
-        .action-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-            
             .nav-links {
                 display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
-        <div class="nav-content">
-            <div class="brand">CycleCare</div>
-            <div class="nav-links">
-                <a href="#"><i class="fas fa-home"></i> Home</a>
-                <a href="#"><i class="fas fa-chart-line"></i> Stats</a>
-                <a href="#"><i class="fas fa-cog"></i> Settings</a>
-                <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
-            </div>
+        <div class="logo">CycleSync</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
         </div>
+        <a href="signup.html" class="cta-button">Get Started</a>
     </nav>
 
-    <div class="container">
-        <div class="dashboard">
-            <div class="main-content">
-                <div class="card">
-                    <h2>Cycle Calendar</h2>
-                    <div class="calendar">
-                        <!-- Calendar days would be dynamically generated -->
-                        <div class="calendar-day">1</div>
-                        <div class="calendar-day active">2</div>
-                        <div class="calendar-day">3</div>
-                        <!-- More days... -->
-                    </div>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Smart Period Tracking,<br>Simplified</h1>
+        <p>Track your cycle, understand your body, and stay prepared with AI-powered predictions</p>
+        <a href="signup.html" class="cta-button">Start Tracking Now</a>
+    </section>
 
-                <div class="card">
-                    <h2>Current Cycle Stats</h2>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <i class="fas fa-thermometer-half stat-icon"></i>
-                            <div>
-                                <h3>Cycle Day 2</h3>
-                                <p>Follicular Phase</p>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>📅 Smart Predictions</h3>
+            <p>AI-powered cycle forecasting with 98% accuracy</p>
+        </div>
+        <div class="feature-card">
+            <h3>📱 Mobile Friendly</h3>
+            <p>Access your data anywhere, anytime</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 Private & Secure</h3>
+            <p>Your data stays completely confidential</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>CycleSync</h4>
+                <p>Empowering women through cycle awareness</p>
             </div>
-
-            <div class="sidebar">
-                <div class="card">
-                    <h2>Quick Log</h2>
-                    <div class="quick-actions">
-                        <button class="action-btn">
-                            <i class="fas fa-tint action-icon"></i>
-                            Log Period
-                        </button>
-                        <button class="action-btn">
-                            <i class="fas fa-heartbeat action-icon"></i>
-                            Symptoms
-                        </button>
-                        <button class="action-btn">
-                            <i class="fas fa-sticky-note action-icon"></i>
-                            Notes
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Predictions</h2>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <i class="fas fa-calendar-alt stat-icon"></i>
-                            <div>
-                                <h3>Next Period</h3>
-                                <p>Dec 28, 2023</p>
-                            </div>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-venus stat-icon"></i>
-                            <div>
-                                <h3>Fertile Window</h3>
-                                <p>Dec 10-15, 2023</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a><br>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a><br>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Add active class to clicked calendar day
-        document.querySelectorAll('.calendar-day').forEach(day => {
-            day.addEventListener('click', () => {
-                document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('active'));
-                day.classList.add('active');
-            });
-        });
-
-        // Simple animation for progress bar
-        setTimeout(() => {
-            document.querySelector('.progress-fill').style.width = '75%';
-        }, 500);
-    </script>
+    </footer>
 </body>
 </html>
