@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CycleSync - Smart Period Tracking & Health Insights">
     <title>CycleSync - Period Tracker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
+    
     <style>
+        :root {
+            --primary: #FF3366;
+            --secondary: #FF99B3;
+            --accent: #FF6699;
+            --background: #FFF5F7;
+            --text: #333333;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,88 +23,84 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        :root {
-            --primary: #FF6B6B;
-            --secondary: #FF8E8E;
-            --accent: #FFD93D;
-            --background: #FFF5F5;
-            --text: #2E2E2E;
-        }
-
         body {
             background-color: var(--background);
             color: var(--text);
+            line-height: 1.6;
         }
 
-        .navbar {
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 5%;
-            background-color: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 1rem 0;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: bold;
             color: var(--primary);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: transform 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
         }
 
         /* Hero Section */
         .hero {
-            padding: 8rem 5%;
+            margin-top: 80px;
             text-align: center;
-            background: linear-gradient(45deg, #fff0f0, #ffffff);
+            padding: 4rem 0;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            border-radius: 20px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
             color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: transform 0.3s ease;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
+        .cta-button:hover {
+            transform: translateY(-3px);
         }
 
-        /* Features Section */
+        /* Features Grid */
         .features {
-            padding: 5rem 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
+            padding: 4rem 0;
         }
 
         .feature-card {
@@ -103,91 +109,117 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 3rem 5%;
-            margin-top: 5rem;
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
-        /* Responsive Design */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-menu {
                 display: none;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .features {
                 grid-template-columns: 1fr;
             }
         }
+
+        @media (min-width: 769px) {
+            .features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* PWA Ready Styles */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">CycleSync</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-        </div>
-        <a href="signup.html" class="cta-button">Get Started</a>
-    </nav>
+    <header>
+        <nav class="container nav-container">
+            <div class="logo">CycleSync</div>
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Smart Period Tracking,<br>Simplified</h1>
-        <p>Track your cycle, understand your body, and stay prepared with AI-powered predictions</p>
-        <a href="signup.html" class="cta-button">Start Tracking Now</a>
-    </section>
+    <main>
+        <section class="hero container">
+            <h1>Track Your Cycle with Confidence</h1>
+            <p>Smart period tracking, health insights, and personalized reminders</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="feature-card">
-            <h3>📅 Smart Predictions</h3>
-            <p>AI-powered cycle forecasting with 98% accuracy</p>
-        </div>
-        <div class="feature-card">
-            <h3>📱 Mobile Friendly</h3>
-            <p>Access your data anywhere, anytime</p>
-        </div>
-        <div class="feature-card">
-            <h3>🔒 Private & Secure</h3>
-            <p>Your data stays completely confidential</p>
-        </div>
-    </section>
+        <section class="container" id="features">
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Cycle Tracking</h3>
+                    <p>Accurate period prediction and cycle history tracking</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Smart Reminders</h3>
+                    <p>Personalized reminders for your cycle and self-care</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Health Insights</h3>
+                    <p>Detailed analytics and health trend tracking</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div>
-                <h4>CycleSync</h4>
-                <p>Empowering women through cycle awareness</p>
-            </div>
-            <div>
-                <h4>Legal</h4>
-                <a href="#">Privacy Policy</a><br>
-                <a href="#">Terms of Service</a>
-            </div>
-            <div>
-                <h4>Connect</h4>
-                <a href="#"><i class="fab fa-instagram"></i> Instagram</a><br>
-                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-            </div>
-        </div>
-    </footer>
+    <div class="install-prompt" id="installPrompt">
+        <p>Install CycleSync for better experience!</p>
+        <button id="installButton">Install</button>
+    </div>
+
+    <script>
+        // PWA Installation Prompt
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installButton = document.getElementById('installButton');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', async () => {
+            installPrompt.style.display = 'none';
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            deferredPrompt = null;
+        });
+    </script>
 </body>
 </html>
