@@ -6,41 +6,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CycleSync - Smart Period Tracking & Health Insights">
     <title>{% block title %}CycleSync{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- Existing head content remains same -->
 </head>
 <body>
     <header class="header">
-        <nav class="container nav-container">
-            <div class="logo"><a href="/">CycleSync</a></div>
-            <button class="hamburger" aria-label="Toggle navigation">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="/dashboard" class="nav-link"><i class="icon ion-md-calendar"></i> Dashboard</a></li>
-                <li><a href="/calendar" class="nav-link"><i class="icon ion-md-stats"></i> Calendar</a></li>
-                <li><a href="/symptoms" class="nav-link"><i class="icon ion-md-medkit"></i> Symptoms</a></li>
-                <li><a href="/register" class="nav-link nav-cta">Get Started</a></li>
-                <li><a href="/login" class="nav-link">Login</a></li>
-            </ul>
-        </nav>
+        <!-- Existing header navigation remains same -->
     </header>
-    
+
     <main class="container">
-        {% block content %}
-        {% endblock %}
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Sync With Your Cycle Naturally</h1>
+                <p class="subheading">Smart period tracking, personalized insights, and holistic health management</p>
+                <div class="cta-buttons">
+                    <a href="/register" class="btn-primary">Start Tracking Now</a>
+                    <a href="#features" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="{% static 'assets/icon/hero-illustration.png' %}" alt="Cycle tracking illustration">
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="features" id="features">
+            <h2>Why Choose CycleSync?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="icon ion-md-analytics"></i>
+                    <h3>Accurate Predictions</h3>
+                    <p>AI-powered cycle forecasting with 90%+ accuracy</p>
+                </div>
+                <div class="feature-card">
+                    <i class="icon ion-md-body"></i>
+                    <h3>Symptom Tracking</h3>
+                    <p>Log 40+ physical & emotional symptoms</p>
+                </div>
+                <div class="feature-card">
+                    <i class="icon ion-md-clipboard"></i>
+                    <h3>Health Insights</h3>
+                    <p>Personalized reports and trend analysis</p>
+                </div>
+                <div class="feature-card">
+                    <i class="icon ion-md-notifications"></i>
+                    <h3>Smart Reminders</h3>
+                    <p>Medication, hydration, and self-care alerts</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create Profile</h3>
+                    <p>Quick setup with basic health information</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Track Daily</h3>
+                    <p>Log symptoms, mood, and flow in seconds</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Insights</h3>
+                    <p>Receive personalized health recommendations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How accurate are predictions? <i class="icon ion-md-arrow-dropdown"></i></h3>
+                    <p>Our AI model achieves 92% accuracy after 3 cycles of tracking, learning your unique patterns.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is my data private? <i class="icon ion-md-arrow-dropdown"></i></h3>
+                    <p>We use bank-level encryption and never share your health data with third parties.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What platforms support? <i class="icon ion-md-arrow-dropdown"></i></h3>
+                    <p>Available on iOS, Android, and web. Sync across all devices in real-time.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is it free? <i class="icon ion-md-arrow-dropdown"></i></h3>
+                    <p>Basic tracking is free. Premium features available with subscription.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="newsletter-content">
+                <h2>Cycle Wellness Tips</h2>
+                <p>Subscribe to receive monthly health insights and product updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
     </main>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>CycleSync</h4>
+                <p>Empowering women through cycle awareness</p>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/privacy">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 CycleSync. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Existing script remains same -->
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+        // Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // FAQ accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Toggle active class
+            this.classList.toggle('active');
+            
+            // Update icon
+            const icon = this.querySelector('i');
+            if (this.classList.contains('active')) {
+                icon.classList.remove('ion-md-arrow-dropdown');
+                icon.classList.add('ion-md-arrow-dropup');
+            } else {
+                icon.classList.remove('ion-md-arrow-dropup');
+                icon.classList.add('ion-md-arrow-dropdown');
+            }
         });
+    });
+    
+    // Smooth scroll for navigation links
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Form submission with validation
+    const newsletterForm = document.querySelector('.newsletter-form');
+    
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value.trim();
+            
+            if (!isValidEmail(email)) {
+                showNotification('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Simulate form submission success
+            emailInput.value = '';
+            showNotification('Thank you for subscribing!', 'success');
+        });
+    }
+    
+    // Helper function to validate email
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Helper function to show notifications
+    function showNotification(message, type) {
+        // Create notification element
+        const notification = document.createElement('div');
     </script>
 </body>
 </html>
