@@ -8,3 +8,9 @@ def Terms(request):
 
 def home(request):
     return render(request , 'website/home.html')
+
+def logininfo(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        pass
+    return render(request , 'website/logininfo.html' )

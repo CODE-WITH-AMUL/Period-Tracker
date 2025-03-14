@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logjn information</title>
+</head>
+<body>
+    <div class="info">
+        {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        <form method='POST'>
+            <h1>Login information</h1>
+            <input type="text" name="username" , required>
+            <label for="">username</label>
+
+        </form>
+    </div>
+</body>
+</html>
