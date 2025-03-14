@@ -12,5 +12,4 @@ def home(request):
 def logininfo(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        pass
-    return render(request , 'website/logininfo.html' )
+    return render(request , 'website/logininfo.html' , {'username':username})
