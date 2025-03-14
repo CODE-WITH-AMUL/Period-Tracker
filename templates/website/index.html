@@ -1,224 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CycleSync - Smart Period Tracking & Health Insights">
-    <title>CycleSync - Period Tracker</title>
-    <link rel="manifest" href="/manifest.json">
-    
-    <style>
-        :root {
-            --primary: #FF3366;
-            --secondary: #FF99B3;
-            --accent: #FF6699;
-            --background: #FFF5F7;
-            --text: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-
-        /* Header Styles */
-        header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(to right, var(--secondary), var(--primary));
-            color: white;
-            border-radius: 20px;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            margin-top: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Features Grid */
-        .features {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 4rem 0;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .features {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* PWA Ready Styles */
-        .install-prompt {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: none;
-        }
-    </style>
+    <title>{% block title %}CycleSync{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="header">
         <nav class="container nav-container">
-            <div class="logo">CycleSync</div>
+            <div class="logo"><a href="/">CycleSync</a></div>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
             <ul class="nav-menu">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/dashboard" class="nav-link"><i class="icon ion-md-calendar"></i> Dashboard</a></li>
+                <li><a href="/calendar" class="nav-link"><i class="icon ion-md-stats"></i> Calendar</a></li>
+                <li><a href="/symptoms" class="nav-link"><i class="icon ion-md-medkit"></i> Symptoms</a></li>
+                <li><a href="/register" class="nav-link nav-cta">Get Started</a></li>
+                <li><a href="/login" class="nav-link">Login</a></li>
             </ul>
         </nav>
     </header>
-
-    <main>
-        <section class="hero container">
-            <h1>Track Your Cycle with Confidence</h1>
-            <p>Smart period tracking, health insights, and personalized reminders</p>
-            <a href="#" class="cta-button">Get Started</a>
-        </section>
-
-        <section class="container" id="features">
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <h3>Cycle Tracking</h3>
-                    <p>Accurate period prediction and cycle history tracking</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3>Smart Reminders</h3>
-                    <p>Personalized reminders for your cycle and self-care</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Health Insights</h3>
-                    <p>Detailed analytics and health trend tracking</p>
-                </div>
-            </div>
-        </section>
+    
+    <main class="container">
+        {% block content %}
+        {% endblock %}
     </main>
 
-    <div class="install-prompt" id="installPrompt">
-        <p>Install CycleSync for better experience!</p>
-        <button id="installButton">Install</button>
-    </div>
-
     <script>
-        // PWA Installation Prompt
-        let deferredPrompt;
-        const installPrompt = document.getElementById('installPrompt');
-        const installButton = document.getElementById('installButton');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installPrompt.style.display = 'block';
-        });
-
-        installButton.addEventListener('click', async () => {
-            installPrompt.style.display = 'none';
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response: ${outcome}`);
-            deferredPrompt = null;
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
     </script>
 </body>
