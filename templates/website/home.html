@@ -1,11 +1,207 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cycle Synic</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <style>
+        .period-event {
+            background-color: #ffcccc !important;
+            border-color: #ff9999 !important;
+        }
+        .predicted-event {
+            background-color: #ccffcc !important;
+            border-color: #99cc99 !important;
+        }
+        .notes-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container mt-5">
+        <h1 class="mb-4">Cycle Synic 🩸</h1>
+        
+        <div class="mb-4">
+            <label>Last Period Start Date: </label>
+            <input type="date" id="startDate" class="form-control mb-2 w-25">
+            
+            <label>Cycle Length (days): </label>
+            <input type="number" id="cycleLength" value="28" min="21" max="35" class="form-control mb-2 w-25">
+            
+            <button class="btn btn-primary" onclick="calculatePeriods()">Calculate</button>
+        </div>
+
+        <div id="calendar"></div>
+
+        <div id="notesModal" class="notes-modal">
+            <h3>Add Note for <span id="selectedDate"></span></h3>
+            <textarea id="noteText" rows="4" cols="50" class="form-control mb-2"></textarea>
+            <button class="btn btn-success" onclick="saveNote()">Save</button>
+            <button class="btn btn-secondary" onclick="closeNoteModal()">Close</button>
+        </div>
+
+        <div class="notification" id="reminder">
+            🔔 Next period predicted in <span id="daysUntil"></span> days
+        </div>
+    </div>
+
+    <script>
+        let periods = [];
+        let notes = {};
+        let calendar;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromLocalStorage();
+            
+            calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                events: [],
+                eventDidMount: function(info) {
+                    if(info.event.extendedProps.notes) {
+                        info.el.querySelector('.fc-event-title').innerHTML += '<br/>📝';
+                    }
+                },
+                select: function(info) {
+                    openNoteModal(info.start);
+                },
+                eventClick: function(info) {
+                    openNoteModal(info.event.start);
+                }
+            });
+            
+            calendar.render();
+            checkReminders();
+        });
+
+        function calculatePeriods() {
+            const startDate = new Date(document.getElementById('startDate').value);
+            const cycleLength = parseInt(document.getElementById('cycleLength').value);
+            
+            periods = [];
+            calendar.removeAllEvents();
+            
+            // Calculate periods for 6 months
+            for(let i = -3; i <= 3; i++) {
+                const periodDate = new Date(startDate);
+                periodDate.setDate(periodDate.getDate() + (i * cycleLength));
+                
+                calendar.addEvent({
+                    title: 'Period Day',
+                    start: periodDate,
+                    allDay: true,
+                    color: '#ffcccc',
+                    extendedProps: {
+                        type: 'period',
+                        notes: notes[periodDate.toISOString().split('T')[0]] || ''
+                    }
+                });
+                
+                // Add predicted periods
+                const predictedDate = new Date(periodDate);
+                predictedDate.setDate(predictedDate.getDate() + cycleLength);
+                calendar.addEvent({
+                    title: 'Predicted Period',
+                    start: predictedDate,
+                    allDay: true,
+                    color: '#ccffcc',
+                    extendedProps: {
+                        type: 'predicted',
+                        notes: ''
+                    }
+                });
+            }
+            
+            saveToLocalStorage();
+            checkReminders();
+        }
+
+        function openNoteModal(date) {
+            const formattedDate = date.toISOString().split('T')[0];
+            document.getElementById('selectedDate').textContent = formattedDate;
+            document.getElementById('noteText').value = notes[formattedDate] || '';
+            document.getElementById('notesModal').style.display = 'block';
+        }
+
+        function closeNoteModal() {
+            document.getElementById('notesModal').style.display = 'none';
+        }
+
+        function saveNote() {
+            const date = document.getElementById('selectedDate').textContent;
+            notes[date] = document.getElementById('noteText').value;
+            
+            // Update calendar event
+            calendar.getEvents().forEach(event => {
+                if(event.start.toISOString().split('T')[0] === date) {
+                    event.setExtendedProp('notes', notes[date]);
+                }
+            });
+            
+            saveToLocalStorage();
+            closeNoteModal();
+            calendar.refetchEvents();
+        }
+
+        function checkReminders() {
+            const nextPeriod = periods.reduce((closest, date) => {
+                return date > new Date() && (!closest || date < closest) ? date : closest;
+            }, null);
+
+            if(nextPeriod) {
+                const daysLeft = Math.ceil((nextPeriod - new Date()) / (1000 * 60 * 60 * 24));
+                document.getElementById('daysUntil').textContent = daysLeft;
+                document.getElementById('reminder').style.display = 'block';
+                
+                if(Notification.permission === 'granted') {
+                    new Notification('Period Reminder', {
+                        body: `Your next period is predicted in ${daysLeft} days`
+                    });
+                }
+            }
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('periodData', JSON.stringify({
+                startDate: document.getElementById('startDate').value,
+                cycleLength: document.getElementById('cycleLength').value,
+                notes: notes
+            }));
+        }
+
+        function loadFromLocalStorage() {
+            const data = JSON.parse(localStorage.getItem('periodData'));
+            if(data) {
+                document.getElementById('startDate').value = data.startDate;
+                document.getElementById('cycleLength').value = data.cycleLength;
+                notes = data.notes || {};
+            }
+        }
+
+        if('Notification' in window) {
+            Notification.requestPermission();
+        }
+    </script>
 </body>
 </html>

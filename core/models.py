@@ -16,4 +16,9 @@ class Cycle(models.Model):
         return f"Cycle for {self.user.username}"
     
 
-
+class PeiodEntry(models.Model):
+    date = models.DateTimeField(unique=True)
+    notes = models.TextField(blank=True)
+    def __str__(self):
+        return f"Period on {self.date}"
+    
