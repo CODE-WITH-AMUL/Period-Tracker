@@ -21,4 +21,13 @@ class PeiodEntry(models.Model):
     notes = models.TextField(blank=True)
     def __str__(self):
         return f"Period on {self.date}"
+
+
+class Note(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    notes = models.TextField(blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"The note of {self.user} - {self.notes[:20]}"
     
