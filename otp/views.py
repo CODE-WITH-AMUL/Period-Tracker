@@ -5,7 +5,6 @@ from .otp import generate_otp, verify_otp
 def send_otp(request):
     if request.method == 'GET':
         return render(request, 'otp/register.html')
-    
     try:
         # Generate OTP
         response = generate_otp(request)
