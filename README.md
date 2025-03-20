@@ -2,7 +2,7 @@
 
 ## Overview
 The **Period Tracking System** is a Django-based application designed to help users track their menstrual cycles efficiently. It provides insights into cycle patterns, predicts upcoming periods, and offers lifestyle improvement suggestions.
-# 🌸 Period Tracking System  
+#  Period Tracking System  
 
 [![Django](https://img.shields.io/badge/Framework-Django-blue.svg)](https://www.djangoproject.com/)  
 [![License](https://img.shields.io/github/license/yourusername/period-tracking-system)](LICENSE)  
